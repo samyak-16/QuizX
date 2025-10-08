@@ -2,7 +2,7 @@ import multer from 'multer';
 import fs from 'fs';
 
 // Create uploads directory if it doesn't exist
-const mainFolders = ['uploads/tempPdf'];
+const mainFolders = ['uploads/tempPdf', 'uploads/tempYoutubeAudio'];
 mainFolders.forEach((folder) => {
   if (!fs.existsSync(folder)) {
     fs.mkdirSync(folder, { recursive: true });
