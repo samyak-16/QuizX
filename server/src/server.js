@@ -1,4 +1,4 @@
-import { env } from './Config/env.js';
+import { env } from './config/env.js';
 import { app } from './app.js';
 import { db } from './Config/db.js';
 

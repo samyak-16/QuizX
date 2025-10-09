@@ -1,4 +1,4 @@
-async function cleanText(rawText) {
+async function cleanRawText(rawText) {
   return rawText
     .replace(/\n+/g, ' ') // remove line breaks
     .replace(/\s{2,}/g, ' ') // multiple spaces → one
@@ -7,4 +7,4 @@ async function cleanText(rawText) {
     .replace(/[^\x00-\x7F]/g, '') // remove weird unicode chars
     .trim();
 }
-export { cleanText };
+export { cleanRawText };

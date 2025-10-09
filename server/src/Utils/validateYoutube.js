@@ -1,33 +1,35 @@
-// utils/validateYouTube.js
-import ytdl from 'ytdl-core';
+import fetch from 'node-fetch';
 
 /**
- * Validate YouTube URL and get metadata
+ * Validate YouTube URL and get metadata (stable, using oEmbed)
  * @param {string} url - YouTube video URL
  * @returns {Promise<{valid: boolean, metadata?: object, error?: string}>}
  */
 async function validateYouTubeUrlWithMeta(url) {
-  // 1️⃣ Check URL format
-  const regex =
-    /^(https?:\/\/)?(www\.)?(youtube\.com\/watch\?v=|youtu\.be\/)[\w-]{11}$/;
-  if (!regex.test(url)) return { valid: false, error: 'Invalid URL format' };
-
-  // 2️⃣ Check if video exists and fetch metadata
   try {
-    const info = await ytdl.getInfo(url);
-    const { title, author, lengthSeconds, videoId } = info.videoDetails;
+    // Clean URL (remove extra query params like ?si=)
+    const cleanUrl = url.split('?')[0];
+
+    // Fetch metadata from YouTube oEmbed API
+    const oEmbedUrl = `https://www.youtube.com/oembed?url=${encodeURIComponent(
+      cleanUrl
+    )}&format=json`;
+    const res = await fetch(oEmbedUrl);
+
+    if (!res.ok) throw new Error('Video not found');
+
+    const data = await res.json();
 
     return {
       valid: true,
       metadata: {
-        title,
-        author: author.name,
-        duration: parseInt(lengthSeconds), // in seconds
-        videoId,
+        title: data.title,
+        author: data.author_name,
       },
     };
   } catch (err) {
     return { valid: false, error: 'Video not found or inaccessible' };
   }
 }
+
 export { validateYouTubeUrlWithMeta };

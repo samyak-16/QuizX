@@ -1,34 +1,11 @@
-import YoutubeMp3Downloader from 'youtube-mp3-downloader';
-import ffmpegPath from '@ffmpeg-installer/ffmpeg';
-import path from 'path';
-import { getYouTubeVideoId } from './getYoutubeVideoId.js';
-
-export function downloadYoutubeMp3(url) {
-  return new Promise((resolve, reject) => {
-    const videoId = getYouTubeVideoId(url);
-    if (!videoId) return reject(new Error('Invalid YouTube URL'));
-
-    const outputPath = './downloads';
-
-    const YD = new YoutubeMp3Downloader({
-      ffmpegPath: ffmpegPath.path,
-      outputPath,
-      youtubeVideoQuality: 'highestaudio',
-      queueParallelism: 2,
-      progressTimeout: 2000,
-    });
-
-    // Start download
-    YD.download(videoId);
-
-    YD.on('finished', (err, data) => {
-      if (err) return reject(err);
-
-      // Construct full file path
-      const filePath = path.join(outputPath, data.file);
-      resolve({ filePath });
-    });
-
-    YD.on('error', (err) => reject(err));
-  });
+export async function downloadYoutubeMp3(youtubeUrl) {
+  try {
+    // const filePath =
+    // 'uploads/tempYoutubeAudio/System Design for Beginners [lFeYU31TnQ8].mp3';
+    const filePath =
+      'uploads/tempYoutubeAudio/Top Advance AWS Services Explained - System Design [s2jD2E3YN30].mp3';
+    return { filePath };
+  } catch (error) {
+    throw new Error(`Download error: ${error.message}`);
+  }
 }

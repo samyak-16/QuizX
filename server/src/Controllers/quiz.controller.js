@@ -1,4 +1,5 @@
 import { Quiz } from '../Models/quiz.model.js';
+import { User } from '../Models/user.model.js';
 import { ApiError } from '../utils/api-error.js';
 import { validateYouTubeUrlWithMeta } from '../Utils/validateYoutube.js';
 import { inngest } from '../Config/inngest.js';
@@ -16,7 +17,7 @@ const createQuiz = async (req, res) => {
   const file = req.file; // pdf-file from multer
   const user = req.user; // user from authMiddleware
   //Initial Validation starts here
-  if (!title || sourceType || !difficulty) {
+  if (!title || !sourceType || !difficulty) {
     return res
       .status(400)
       .json(new ApiError(400, 'All necessary fileds are  required'));
@@ -53,15 +54,16 @@ const createQuiz = async (req, res) => {
         );
     }
   }
+  let videoMetadata;
+  if (sourceType === 'youtube') {
+    const result = await validateYouTubeUrlWithMeta(youtubeUrl);
+    if (!result.valid) {
+      console.log(result.error);
 
-  //Validate Youtube video (a req is sent to yt-server)
-
-  const result = await validateYouTubeUrlWithMeta(youtubeUrl);
-
-  if (!result.valid) {
-    return res.status(400).json(new ApiError(400, result.error));
+      return res.status(400).json(new ApiError(400, result.error));
+    }
+    videoMetadata = result.metadata;
   }
-  const videoMetadata = result.metadata; // Send in Response
 
   //Initial Validation ends here
 
@@ -70,12 +72,15 @@ const createQuiz = async (req, res) => {
       title,
       sourceType,
       youtubeUrl: sourceType === 'youtube' ? youtubeUrl : undefined,
-      pdfUrl: sourceType === 'youtube' ? youtubeUrl : undefined,
-      pdfPath: file.path,
+      // pdfUrl: sourceType === 'youtube' ? youtubeUrl : undefined, //TODO
+      pdfPath: file?.path,
       generatedBy: user._id,
       difficulty,
     });
+    //Update User Document
 
+    user.quizzesCreated.push(quiz._id);
+    await user.save();
     await quiz.save();
 
     //Invoke inngest event
@@ -89,8 +94,8 @@ const createQuiz = async (req, res) => {
       .json(
         new ApiResponse(
           200,
-          { videoMetadata, quiz },
-          'Wait until you quiz is fully processed by AI, Keep pooling '
+          { quiz, videoMetadata: videoMetadata || null },
+          'Quiz created successfully. Wait until AI finishes processing.'
         )
       );
   } catch (error) {
@@ -113,7 +118,7 @@ const submitQuiz = async (req, res) => {
   // };
 
   const { quizId = '', answers = [] } = req.body || {};
-
+  const user = req.user;
   if (!quizId || !answers || !Array.isArray(answers)) {
     return res
       .status(400)
@@ -153,6 +158,15 @@ const submitQuiz = async (req, res) => {
         explanation: q.explanation || null,
       };
     });
+    // Update user document with new score and attemptedquizes
+
+    user.quizzesAttempted.push({
+      quiz: quiz._id,
+      score: score,
+      completedAt: Date.now(),
+    });
+
+    await user.save();
 
     return res.status(200).json(
       new ApiResponse(
@@ -231,9 +245,11 @@ const getQuizById = async (req, res) => {
       options: q.options,
       // don't include correctAnswer or explanation
     }));
+    console.log('sanitizedQuestions : ', sanitizedQuestions);
 
     const safeQuiz = {
       _id: quiz._id,
+      status: quiz.status,
       title: quiz.title,
       sourceType: quiz.sourceType,
       youtubeUrl: quiz.youtubeUrl,
@@ -255,6 +271,6 @@ const getQuizById = async (req, res) => {
       .json(new ApiError(500, 'Internal Server Error at getQuizById'));
   }
 };
-const getAllUsersQuiz = async (req, res) => {};
+// const getAllUsersQuiz = async (req, res) => {};
 
-export { createQuiz, submitQuiz, getAllUsersQuiz, getQuizById };
+export { createQuiz, submitQuiz, getQuizById };

@@ -13,7 +13,7 @@ const userSchema = new mongoose.Schema(
       required: true,
       lowercase: true,
       trim: true,
-      uniqie: true,
+      unique: true,
     },
 
     //Quizes
@@ -64,20 +64,20 @@ userSchema.pre('save', function (next) {
   next();
 });
 
-userSchema.pre('save', async function (next) {
-  //Hash password before saving
-  if (this.isModified('password') || this.isNew) {
-    this.password = await bcrypt.hash(this.password, 10);
-    console.log('Password hashed successfully');
-  }
+// userSchema.pre('save', async function (next) {
+//   //Hash password before saving
+//   if (this.isModified('password') || this.isNew) {
+//     this.password = await bcrypt.hash(this.password, 10);
+//     console.log('Password hashed successfully');
+//   }
 
-  next();
-});
+//   next();
+// });
 
-userSchema.methods.comparePassword = async function (candidatePassword) {
-  return await bcrypt.compare(candidatePassword, this.password);
-};
+// userSchema.methods.comparePassword = async function (candidatePassword) {
+//   return await bcrypt.compare(candidatePassword, this.password);
+// };
 
-const User = mongoose.model('User', userSchema);
+const User = mongoose.models.User || mongoose.model('User', userSchema);
 
 export { User };

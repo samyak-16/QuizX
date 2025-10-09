@@ -6,6 +6,7 @@ import { inngestFunctions } from './inngest/index.js';
 import { inngest } from './Config/inngest.js';
 import { serve } from 'inngest/express';
 import quizRouter from './Routes/quiz.route.js';
+import userRouter from './Routes/user.route.js';
 
 const app = express();
 
@@ -23,7 +24,8 @@ app.use(cookieParser());
 app.get('/', (req, res) => {
   res.send('Hello from app.js');
 });
-app.use('api/quizes', quizRouter);
+app.use('/api/quizzes', quizRouter);
+app.use('/api/users', userRouter);
 
 //Inngest route from interacting asynchronously with inngest cloud
 app.use(
