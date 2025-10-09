@@ -4,6 +4,8 @@ import { err } from 'inngest/types';
 
 const generateQuiz = async ({ text, difficulty }) => {
   try {
+    console.log('Quiz Generation Started ');
+
     const chatCompletion = await groq.chat.completions.create({
       messages: [
         {

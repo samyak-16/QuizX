@@ -35,9 +35,11 @@ const onCreateQuiz = inngest.createFunction(
         const rawText = await step.run('extract-text-from-pdf', async () => {
           return await extractText(quiz.pdfPath);
         });
-        const cleanText = await step.run('clean-rawText', async () => {
-          return await cleanRawText(rawText);
-        });
+        console.log('Extracted raw text from pdf : ');
+
+        const cleanText = await cleanRawText(rawText);
+
+        console.log('Cleaned raw Text successfully');
         //Call LLM to generate quiz
         const quizQuestions = await step.run('generate-quiz', async () => {
           return await generateQuiz({
@@ -45,19 +47,23 @@ const onCreateQuiz = inngest.createFunction(
             difficulty: quiz.difficulty,
           });
         });
+        console.log('Quiz generation completed :', quizQuestions.questions);
 
         await step.run('save-quizQuestions-to-db', async () => {
           await Quiz.findByIdAndUpdate(quizId, {
-            questions: quizQuestions,
+            questions: quizQuestions.questions,
             generatedAt: Date.now(),
             status: 'completed',
             pdfPath: undefined,
+            totalQuestions: quizQuestions.questions.length,
           });
         });
+        console.log('Quizes saved to database successfully ');
 
         await step.run('clean-temp-pdf', async () => {
           await cleanTempFile(quiz.pdfPath);
         });
+        console.log('Removed temp pdf .');
       } else {
         //Pipeline For youtubeVideo
         console.log('Inside youtube video pipeline');
@@ -109,6 +115,7 @@ const onCreateQuiz = inngest.createFunction(
             generatedAt: Date.now(),
             status: 'completed',
             youtubeMp3Path: undefined,
+            totalQuestions: quizQuestions.questions.length,
           });
         });
         console.log('Saved the questions to database sucesfully');

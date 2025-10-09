@@ -245,7 +245,6 @@ const getQuizById = async (req, res) => {
       options: q.options,
       // don't include correctAnswer or explanation
     }));
-    console.log('sanitizedQuestions : ', sanitizedQuestions);
 
     const safeQuiz = {
       _id: quiz._id,

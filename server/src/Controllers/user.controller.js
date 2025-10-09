@@ -3,7 +3,7 @@ import jwt from 'jsonwebtoken';
 import { User } from '../Models/user.model.js';
 import { inngest } from '../Config/inngest.js';
 import { ApiError } from '../utils/api-error.js';
-import { env } from '../config/env.js';
+import { env } from '../Config/env.js';
 import { ApiResponse } from '../Utils/api-response.js';
 
 const registerUser = async (req, res) => {
@@ -101,25 +101,6 @@ const logoutUser = async (req, res) => {
   }
 };
 
-// const getAllUsersDetails = async (req, res) => {
-//   try {
 
-//     const users = await User.find().select('-password');
-//     if (users.length == 0) {
-//       return res
-//         .status(404)
-//         .json(new ApiError(404, 'No any users in database'));
-//     }
-
-//     return res
-//       .status(200)
-//       .json(new ApiResponse(200, { users }, 'Fetched all users successfully'));
-//   } catch (error) {
-//     console.error('Internal Server Error at getAllUsersDetails', error.message);
-//     res
-//       .status(500)
-//       .json(new ApiError(500, 'Internal Server Error at  getAllUsersDetails'));
-//   }
-// };
 
 export { registerUser, loginUser, logoutUser };

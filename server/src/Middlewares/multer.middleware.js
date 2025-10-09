@@ -11,7 +11,7 @@ mainFolders.forEach((folder) => {
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, 'uploads/pdf');
+    cb(null, 'uploads/tempPdf');
   },
   filename: function (req, file, cb) {
     cb(null, Date.now() + '-' + file.originalname);

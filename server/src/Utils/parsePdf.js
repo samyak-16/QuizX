@@ -1,20 +1,15 @@
 import fs from 'fs';
+import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
+const pdfParse = require('pdf-parse');
 
-async function extractText(filePath) {
+export const extractText = async (filePath) => {
   try {
-    // Dynamically import pdf-parse to handle CommonJS module in ESM
-    const pdfParseModule = await import('pdf-parse');
-    const pdfParse = pdfParseModule.default || pdfParseModule;
-
-    // Read file as buffer
     const dataBuffer = fs.readFileSync(filePath);
-    const pdfData = await pdfParse(dataBuffer);
-
-    return pdfData.text;
-  } catch (error) {
-    console.error('❌ Error extracting PDF text:', error);
-    throw error;
+    const data = await pdfParse(dataBuffer);
+    return data.text;
+  } catch (err) {
+    console.error('❌ Error extracting PDF text:', err);
+    throw err;
   }
-}
-
-export { extractText };
+};

@@ -17,7 +17,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": " { \"email\" : \"samyak@16.test.com\", \"password\" : \"CLEB1197B2\" , \"name\" : \"Samyak Raj Subedi\"  }",
+							"raw": " { \"email\" : \"samyak@quiz.ai.test.com\", \"password\" : \"CLEB1197B2\" , \"name\" : \"Samyak Raj Subedi\"  }",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -188,13 +188,29 @@
 						"method": "POST",
 						"header": [],
 						"body": {
-							"mode": "raw",
-							"raw": "{\r\n    \"title\": \"Advance AWS Quiz\" ,\r\n    \"sourceType\" : \"youtube\",\r\n    \"difficulty\" : \"hard\" ,\r\n    \"youtubeUrl\" : \"https://youtu.be/s2jD2E3YN30?si=Xo92MmnpwJuvhSYX\"\r\n  }",
-							"options": {
-								"raw": {
-									"language": "json"
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "title",
+									"value": "Git quiz",
+									"type": "text"
+								},
+								{
+									"key": "sourceType",
+									"value": "pdf",
+									"type": "text"
+								},
+								{
+									"key": "difficulty",
+									"value": "easy",
+									"type": "text"
+								},
+								{
+									"key": "pdf",
+									"type": "file",
+									"src": "/C:/Users/Acer/OneDrive/Desktop/Programming Learnings/Learning Resources/git-cheat-sheet-education.pdf"
 								}
-							}
+							]
 						},
 						"url": {
 							"raw": "http://localhost:3000/api/quizzes/create",
@@ -218,7 +234,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/quizzes/68e7bc4555b66158b69a74f8",
+							"raw": "http://localhost:3000/api/quizzes/68e7ecdc29bd4df9dd212010",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -227,7 +243,7 @@
 							"path": [
 								"api",
 								"quizzes",
-								"68e7bc4555b66158b69a74f8"
+								"68e7ecdc29bd4df9dd212010"
 							]
 						}
 					},
@@ -240,7 +256,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"quizId\": \"68e7bc4555b66158b69a74f8\",\r\n  \"answers\": [\r\n    {\r\n      \"questionId\": \"68e7bc5055b66158b69a74fe\",\r\n      \"userAnswer\": \"To create and manage infrastructure as code\"\r\n    },\r\n    {\r\n      \"questionId\": \"68e7bc5055b66158b69a74ff\",\r\n      \"userAnswer\": \"Reduced latency and increased cost\"\r\n    },\r\n    {\r\n      \"questionId\": \"68e7bc5055b66158b69a7500\",\r\n      \"userAnswer\": \"To route API requests to backend services\"\r\n    },\r\n    {\r\n      \"questionId\": \"68e7bc5055b66158b69a7501\",\r\n      \"userAnswer\": \"Enhanced user experience and reduced cost\"\r\n    },\r\n    {\r\n      \"questionId\": \"68e7bc5055b66158b69a7502\",\r\n      \"userAnswer\": \"To execute serverless functions in response to events\"\r\n    },\r\n    {\r\n      \"questionId\": \"68e7bc5055b66158b69a7503\",\r\n      \"userAnswer\": \"Managed model hosting service with high availability and scalability\"\r\n    },\r\n    {\r\n      \"questionId\": \"68e7bc5055b66158b69a7504\",\r\n      \"userAnswer\": \"To provide core services for AI agents\"\r\n    },\r\n    {\r\n      \"questionId\": \"68e7bc5055b66158b69a7505\",\r\n      \"userAnswer\": \"AWS-specific infrastructure as code management\"\r\n    },\r\n    {\r\n      \"questionId\": \"68e7bc5055b66158b69a7506\",\r\n      \"userAnswer\": \"To route API requests to backend services\"\r\n    },\r\n    {\r\n      \"questionId\": \"68e7bc5055b66158b69a7507\",\r\n      \"userAnswer\": \"Managed DNS service with high availability and scalability\"\r\n    },\r\n    {\r\n      \"questionId\": \"68e7bc5055b66158b69a7508\",\r\n      \"userAnswer\": \"To execute serverless functions in response to events\"\r\n    },\r\n    {\r\n      \"questionId\": \"68e7bc5055b66158b69a7509\",\r\n      \"userAnswer\": \"Managed model hosting service with high availability and scalability\"\r\n    },\r\n    {\r\n      \"questionId\": \"68e7bc5055b66158b69a750a\",\r\n      \"userAnswer\": \"To provide core services for AI agents\"\r\n    },\r\n    {\r\n      \"questionId\": \"68e7bc5055b66158b69a750b\",\r\n      \"userAnswer\": \"AWS-specific infrastructure as code management with high scalability\"\r\n    },\r\n    {\r\n      \"questionId\": \"68e7bc5055b66158b69a750c\",\r\n      \"userAnswer\": \"To route API requests to backend services\"\r\n    },\r\n    {\r\n      \"questionId\": \"68e7bc5055b66158b69a750d\",\r\n      \"userAnswer\": \"Managed DNS service with high availability and scalability\"\r\n    }\r\n  ]\r\n}\r\n",
+							"raw": "{\r\n  \"quizId\": \"68e7ecdc29bd4df9dd212010\",\r\n  \"answers\": [\r\n    {\r\n      \"questionId\": \"68e7ece029bd4df9dd212015\",\r\n      \"userAnswer\": \"Modified files in the working directory\"\r\n    },\r\n    {\r\n      \"questionId\": \"68e7ece029bd4df9dd212016\",\r\n      \"userAnswer\": \"Add a file as it looks now to the next commit\"\r\n    },\r\n    {\r\n      \"questionId\": \"68e7ece029bd4df9dd212017\",\r\n      \"userAnswer\": \"Set a global name for credit in version history\"\r\n    },\r\n    {\r\n      \"questionId\": \"68e7ece029bd4df9dd212018\",\r\n      \"userAnswer\": \"Switch to another branch and check it out\"\r\n    },\r\n    {\r\n      \"questionId\": \"68e7ece029bd4df9dd212019\",\r\n      \"userAnswer\": \"Save modified and staged changes\"\r\n    },\r\n    {\r\n      \"questionId\": \"68e7ece029bd4df9dd21201a\",\r\n      \"userAnswer\": \"All commits in the repository\"\r\n    },\r\n    {\r\n      \"questionId\": \"68e7ece029bd4df9dd21201b\",\r\n      \"userAnswer\": \"The diff of what is changed but not staged\"\r\n    },\r\n    {\r\n      \"questionId\": \"68e7ece029bd4df9dd21201c\",\r\n      \"userAnswer\": \"Set a system-wide ignore pattern for all local repositories\"\r\n    },\r\n    {\r\n      \"questionId\": \"68e7ece029bd4df9dd21201d\",\r\n      \"userAnswer\": \"Retrieve an entire repository from a hosted location via URL\"\r\n    },\r\n    {\r\n      \"questionId\": \"68e7ece029bd4df9dd21201e\",\r\n      \"userAnswer\": \"Delete a file from the project and stage the removal for commit\"\r\n    },\r\n    {\r\n      \"questionId\": \"68e7ece029bd4df9dd21201f\",\r\n      \"userAnswer\": \"Write working from the top of the stash stack\"\r\n    },\r\n    {\r\n      \"questionId\": \"68e7ece029bd4df9dd212020\",\r\n      \"userAnswer\": \"Clear the staging area, rewrite the working tree from the specified commit\"\r\n    },\r\n    {\r\n      \"questionId\": \"68e7ece029bd4df9dd212021\",\r\n      \"userAnswer\": \"Show the commit history for the currently active branch\"\r\n    },\r\n    {\r\n      \"questionId\": \"68e7ece029bd4df9dd212022\",\r\n      \"userAnswer\": \"Change an existing file path and stage the move\"\r\n    },\r\n    {\r\n      \"questionId\": \"68e7ece029bd4df9dd212023\",\r\n      \"userAnswer\": \"Show all commit logs with indication of any paths that moved\"\r\n    }\r\n  ]\r\n}\r\n",
 							"options": {
 								"raw": {
 									"language": "json"
