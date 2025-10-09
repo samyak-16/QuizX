@@ -1,0 +1,269 @@
+{
+	"info": {
+		"_postman_id": "e04fe0f5-c68d-4fe1-b98c-ed2a3995f85c",
+		"name": "QuizX",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "43819293",
+		"_collection_link": "https://samyakrajsubedi.postman.co/workspace/Samyak-Raj-Subedi's-Workspace~b3afd5f4-f828-461d-8e85-1ceee5cd5af2/collection/43819293-e04fe0f5-c68d-4fe1-b98c-ed2a3995f85c?action=share&source=collection_link&creator=43819293"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Register User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " { \"email\" : \"samyak@16.test.com\", \"password\" : \"CLEB1197B2\" , \"name\" : \"Samyak Raj Subedi\"  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/users/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": " { \"email\" : \"samyak@quiz.ai.test.com\", \"password\" : \"CLEB1197B2\"  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/users/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/users/logout",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"users",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Quiz (yt-version)",
+			"item": [
+				{
+					"name": "Create Quiz",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Advance AWS Quiz\" ,\r\n    \"sourceType\" : \"youtube\",\r\n    \"difficulty\" : \"hard\" ,\r\n    \"youtubeUrl\" : \"https://youtu.be/s2jD2E3YN30?si=Xo92MmnpwJuvhSYX\"\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/quizzes/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"quizzes",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Quiz By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/quizzes/68e7bc4555b66158b69a74f8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"quizzes",
+								"68e7bc4555b66158b69a74f8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Submit Quiz",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"quizId\": \"68e7bc4555b66158b69a74f8\",\r\n  \"answers\": [\r\n    {\r\n      \"questionId\": \"68e7bc5055b66158b69a74fe\",\r\n      \"userAnswer\": \"To create and manage infrastructure as code\"\r\n    },\r\n    {\r\n      \"questionId\": \"68e7bc5055b66158b69a74ff\",\r\n      \"userAnswer\": \"Reduced latency and increased cost\"\r\n    },\r\n    {\r\n      \"questionId\": \"68e7bc5055b66158b69a7500\",\r\n      \"userAnswer\": \"To route API requests to backend services\"\r\n    },\r\n    {\r\n      \"questionId\": \"68e7bc5055b66158b69a7501\",\r\n      \"userAnswer\": \"Enhanced user experience and reduced cost\"\r\n    },\r\n    {\r\n      \"questionId\": \"68e7bc5055b66158b69a7502\",\r\n      \"userAnswer\": \"To execute serverless functions in response to events\"\r\n    },\r\n    {\r\n      \"questionId\": \"68e7bc5055b66158b69a7503\",\r\n      \"userAnswer\": \"Managed model hosting service with high availability and scalability\"\r\n    },\r\n    {\r\n      \"questionId\": \"68e7bc5055b66158b69a7504\",\r\n      \"userAnswer\": \"To provide core services for AI agents\"\r\n    },\r\n    {\r\n      \"questionId\": \"68e7bc5055b66158b69a7505\",\r\n      \"userAnswer\": \"AWS-specific infrastructure as code management\"\r\n    },\r\n    {\r\n      \"questionId\": \"68e7bc5055b66158b69a7506\",\r\n      \"userAnswer\": \"To route API requests to backend services\"\r\n    },\r\n    {\r\n      \"questionId\": \"68e7bc5055b66158b69a7507\",\r\n      \"userAnswer\": \"Managed DNS service with high availability and scalability\"\r\n    },\r\n    {\r\n      \"questionId\": \"68e7bc5055b66158b69a7508\",\r\n      \"userAnswer\": \"To execute serverless functions in response to events\"\r\n    },\r\n    {\r\n      \"questionId\": \"68e7bc5055b66158b69a7509\",\r\n      \"userAnswer\": \"Managed model hosting service with high availability and scalability\"\r\n    },\r\n    {\r\n      \"questionId\": \"68e7bc5055b66158b69a750a\",\r\n      \"userAnswer\": \"To provide core services for AI agents\"\r\n    },\r\n    {\r\n      \"questionId\": \"68e7bc5055b66158b69a750b\",\r\n      \"userAnswer\": \"AWS-specific infrastructure as code management with high scalability\"\r\n    },\r\n    {\r\n      \"questionId\": \"68e7bc5055b66158b69a750c\",\r\n      \"userAnswer\": \"To route API requests to backend services\"\r\n    },\r\n    {\r\n      \"questionId\": \"68e7bc5055b66158b69a750d\",\r\n      \"userAnswer\": \"Managed DNS service with high availability and scalability\"\r\n    }\r\n  ]\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/quizzes/submit",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"quizzes",
+								"submit"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Quiz (pdf version)",
+			"item": [
+				{
+					"name": "Create Quiz",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"title\": \"Advance AWS Quiz\" ,\r\n    \"sourceType\" : \"youtube\",\r\n    \"difficulty\" : \"hard\" ,\r\n    \"youtubeUrl\" : \"https://youtu.be/s2jD2E3YN30?si=Xo92MmnpwJuvhSYX\"\r\n  }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/quizzes/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"quizzes",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Quiz By Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/api/quizzes/68e7bc4555b66158b69a74f8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"quizzes",
+								"68e7bc4555b66158b69a74f8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Submit Quiz",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"quizId\": \"68e7bc4555b66158b69a74f8\",\r\n  \"answers\": [\r\n    {\r\n      \"questionId\": \"68e7bc5055b66158b69a74fe\",\r\n      \"userAnswer\": \"To create and manage infrastructure as code\"\r\n    },\r\n    {\r\n      \"questionId\": \"68e7bc5055b66158b69a74ff\",\r\n      \"userAnswer\": \"Reduced latency and increased cost\"\r\n    },\r\n    {\r\n      \"questionId\": \"68e7bc5055b66158b69a7500\",\r\n      \"userAnswer\": \"To route API requests to backend services\"\r\n    },\r\n    {\r\n      \"questionId\": \"68e7bc5055b66158b69a7501\",\r\n      \"userAnswer\": \"Enhanced user experience and reduced cost\"\r\n    },\r\n    {\r\n      \"questionId\": \"68e7bc5055b66158b69a7502\",\r\n      \"userAnswer\": \"To execute serverless functions in response to events\"\r\n    },\r\n    {\r\n      \"questionId\": \"68e7bc5055b66158b69a7503\",\r\n      \"userAnswer\": \"Managed model hosting service with high availability and scalability\"\r\n    },\r\n    {\r\n      \"questionId\": \"68e7bc5055b66158b69a7504\",\r\n      \"userAnswer\": \"To provide core services for AI agents\"\r\n    },\r\n    {\r\n      \"questionId\": \"68e7bc5055b66158b69a7505\",\r\n      \"userAnswer\": \"AWS-specific infrastructure as code management\"\r\n    },\r\n    {\r\n      \"questionId\": \"68e7bc5055b66158b69a7506\",\r\n      \"userAnswer\": \"To route API requests to backend services\"\r\n    },\r\n    {\r\n      \"questionId\": \"68e7bc5055b66158b69a7507\",\r\n      \"userAnswer\": \"Managed DNS service with high availability and scalability\"\r\n    },\r\n    {\r\n      \"questionId\": \"68e7bc5055b66158b69a7508\",\r\n      \"userAnswer\": \"To execute serverless functions in response to events\"\r\n    },\r\n    {\r\n      \"questionId\": \"68e7bc5055b66158b69a7509\",\r\n      \"userAnswer\": \"Managed model hosting service with high availability and scalability\"\r\n    },\r\n    {\r\n      \"questionId\": \"68e7bc5055b66158b69a750a\",\r\n      \"userAnswer\": \"To provide core services for AI agents\"\r\n    },\r\n    {\r\n      \"questionId\": \"68e7bc5055b66158b69a750b\",\r\n      \"userAnswer\": \"AWS-specific infrastructure as code management with high scalability\"\r\n    },\r\n    {\r\n      \"questionId\": \"68e7bc5055b66158b69a750c\",\r\n      \"userAnswer\": \"To route API requests to backend services\"\r\n    },\r\n    {\r\n      \"questionId\": \"68e7bc5055b66158b69a750d\",\r\n      \"userAnswer\": \"Managed DNS service with high availability and scalability\"\r\n    }\r\n  ]\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/quizzes/submit",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"quizzes",
+								"submit"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
