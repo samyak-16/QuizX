@@ -63,11 +63,9 @@ const loginUser = async (req, res) => {
 
     const cookieOptions = {
       httpOnly: true, // Prevents client-side JavaScript from accessing the cookie
-      // secure: process.env.NODE_ENV === 'production', // Use secure cookies in production
-      secure: true, // Use secure cookies in production
+      secure: process.env.NODE_ENV === 'production', // Use secure cookies in production only
       maxAge: 24 * 60 * 60 * 1000, // 1 day in milliseconds
-      // sameSite: 'Strict', // Prevents CSRF attacks by ensuring the cookie is sent only for same-site requests
-      sameSite: 'None', // Allow setting Cookies for Cross Origin requests  too .
+      sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Lax', // Allow setting Cookies for Cross Origin requests in production
     };
 
     res.cookie('token', token, cookieOptions);
@@ -86,8 +84,8 @@ const logoutUser = async (req, res) => {
     //Clear the token cookie
     res.clearCookie('token', {
       httpOnly: true,
-      secure: env.NODE_ENV === 'production',
-      sameSite: 'Strict',
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Lax',
     });
 
     return res
