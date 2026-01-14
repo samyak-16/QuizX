@@ -8,6 +8,8 @@ import { serve } from 'inngest/express';
 import quizRouter from './Routes/quiz.route.js';
 import userRouter from './Routes/user.route.js';
 import profileRouter from './Routes/profile.route.js';
+import gameRouter from './Routes/game.route.js';
+import leaderboardRouter from './Routes/leaderboard.route.js';
 
 const app = express();
 
@@ -44,6 +46,8 @@ app.get('/', (req, res) => {
 app.use('/api/users', userRouter);
 app.use('/api/quizzes', quizRouter);
 app.use('/api/profile', profileRouter);
+app.use('/api/games', gameRouter);
+app.use('/api/leaderboard', leaderboardRouter);
 
 //Inngest route from interacting asynchronously with inngest cloud
 app.use(

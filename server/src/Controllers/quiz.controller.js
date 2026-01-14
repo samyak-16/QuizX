@@ -1,6 +1,6 @@
 import { Quiz } from '../Models/quiz.model.js';
 import { User } from '../Models/user.model.js';
-import { ApiError } from '../utils/api-error.js';
+import { ApiError } from '../Utils/api-error.js';
 import { validateYouTubeUrlWithMeta } from '../Utils/validateYoutube.js';
 import { inngest } from '../Config/inngest.js';
 import { ApiResponse } from '../Utils/api-response.js';
@@ -12,6 +12,7 @@ const createQuiz = async (req, res) => {
     sourceType = '',
     youtubeUrl = '',
     difficulty = '',
+    category = 'Other',
   } = req.body || {};
 
   const file = req.file; // pdf-file from multer
@@ -71,6 +72,7 @@ const createQuiz = async (req, res) => {
     const quiz = new Quiz({
       title,
       sourceType,
+      category,
       youtubeUrl: sourceType === 'youtube' ? youtubeUrl : undefined,
       // pdfUrl: sourceType === 'youtube' ? youtubeUrl : undefined, //TODO
       pdfPath: file?.path,

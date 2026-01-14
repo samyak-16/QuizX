@@ -8,12 +8,29 @@ const CreateQuiz = () => {
     sourceType: '',
     youtubeUrl: '',
     difficulty: '',
+    category: '',
     file: null
   })
   const [isProcessing, setIsProcessing] = useState(false)
   const [processingStatus, setProcessingStatus] = useState('')
   const [errors, setErrors] = useState({})
 
+  const categories = [
+    'Mathematics',
+    'Physics',
+    'Chemistry',
+    'Biology',
+    'History',
+    'Geography',
+    'Literature',
+    'Computer Science',
+    'Economics',
+    'Psychology',
+    'Language',
+    'Art',
+    'Music',
+    'Other',
+  ]
   const handleInputChange = (field, value) => {
     setFormData(prev => ({
       ...prev,
@@ -106,6 +123,7 @@ const CreateQuiz = () => {
       submitData.append('title', formData.title)
       submitData.append('sourceType', formData.sourceType)
       submitData.append('difficulty', formData.difficulty)
+      submitData.append('category', formData.category || 'Other')
 
       if (formData.sourceType === 'youtube') {
         submitData.append('youtubeUrl', formData.youtubeUrl)
@@ -124,6 +142,7 @@ const CreateQuiz = () => {
           title: '',
           sourceType: '',
           youtubeUrl: '',
+          category: '',
           difficulty: '',
           file: null
         })
@@ -151,6 +170,7 @@ const CreateQuiz = () => {
     setFormData({
       title: '',
       sourceType: '',
+      category: '',
       youtubeUrl: '',
       difficulty: '',
       file: null
@@ -210,6 +230,26 @@ const CreateQuiz = () => {
             ))}
           </div>
           {errors.difficulty && <p className="text-red-500 text-sm mt-1">{errors.difficulty}</p>}
+        </div>
+
+        {/* Category Selection */}
+        <div className="mb-6">
+          <label className="block text-sm font-medium text-foreground mb-2">
+            Category
+          </label>
+          <select
+            value={formData.category}
+            onChange={(e) => handleInputChange('category', e.target.value)}
+            disabled={isProcessing}
+            className="w-full px-4 py-3 border border-border rounded-lg bg-background text-foreground focus:ring-2 focus:ring-primary focus:border-transparent"
+          >
+            <option value="">Select a category</option>
+            {categories.map((cat) => (
+              <option key={cat} value={cat}>
+                {cat}
+              </option>
+            ))}
+          </select>
         </div>
 
         {/* Source Type Selection */}

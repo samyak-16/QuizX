@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import { Menu, X, Sun, Moon, Home, PlusCircle, User, LogOut, BookOpen, ChevronLeft, ChevronRight } from 'lucide-react'
+import { Menu, X, Sun, Moon, Home, PlusCircle, User, LogOut, BookOpen, ChevronLeft, ChevronRight, Gamepad2, Trophy } from 'lucide-react'
 import { useTheme } from '../contexts/ThemeContext'
 import { useAuth } from '../contexts/AuthContext'
 
@@ -14,6 +14,8 @@ const Layout = ({ children }) => {
 
   const navigation = [
     { name: 'Dashboard', href: '/dashboard', icon: Home },
+    { name: 'Leaderboard', href: '/leaderboard', icon: Trophy },
+    { name: 'Join Game', href: '/play', icon: Gamepad2 },
     { name: 'Create Quiz', href: '/create-quiz', icon: PlusCircle },
     { name: 'My Quizzes', href: '/my-quizzes', icon: BookOpen },
     { name: 'Profile', href: '/profile', icon: User },

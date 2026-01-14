@@ -11,11 +11,32 @@ const questionSchema = new mongoose.Schema({
 const quizSchema = new mongoose.Schema(
   {
     title: { type: String, required: true }, // e.g. "Physics Chapter 1 Quiz"
+    category: {
+      type: String,
+      enum: [
+        'Mathematics',
+        'Physics',
+        'Chemistry',
+        'Biology',
+        'History',
+        'Geography',
+        'Literature',
+        'Computer Science',
+        'Economics',
+        'Psychology',
+        'Language',
+        'Art',
+        'Music',
+        'Other',
+      ],
+      default: 'Other',
+    },
     sourceType: {
       type: String,
-      enum: ['pdf', 'youtube'],
+      enum: ['pdf', 'youtube', 'text'],
       required: true,
     },
+    isPublic: { type: Boolean, default: false }, // For public quiz library
     youtubeUrl: { type: String }, // for YT link
     pdfUrl: { type: String }, // (pdf link - cloudinary / s3),
     pdfPath: { type: String }, //Temp local path where pdf gets stored initially , usefull for inngest function during event call,

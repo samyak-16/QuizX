@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { BookOpen, Brain, Zap, Users, ArrowRight } from 'lucide-react'
+import { BookOpen, Brain, Zap, Users, ArrowRight, Gamepad2 } from 'lucide-react'
 import { useTheme } from '../contexts/ThemeContext'
 import { useAuth } from '../contexts/AuthContext'
 
@@ -83,6 +83,13 @@ const Home = () => {
               Study smarter, not harder.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                to="/play"
+                className="inline-flex items-center justify-center px-8 py-4 bg-green-600 text-white rounded-xl hover:bg-green-700 transition-all duration-200 font-semibold text-lg group"
+              >
+                <Gamepad2 className="mr-2 w-5 h-5" />
+                Join a Game
+              </Link>
               {user ? (
                 <Link
                   to="/dashboard"

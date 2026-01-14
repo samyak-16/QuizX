@@ -78,4 +78,60 @@ export const quizAPI = {
   },
 }
 
+// ---------------- GAME API ----------------
+export const gameAPI = {
+  createGameSession: async (quizId, settings = {}) => {
+    const res = await api.post('/games/create', { quizId, settings })
+    return res.data
+  },
+
+  validateGameCode: async (code) => {
+    const res = await api.get(`/games/join/${code}`)
+    return res.data
+  },
+
+  getGameSession: async (sessionId) => {
+    const res = await api.get(`/games/session/${sessionId}`)
+    return res.data
+  },
+
+  getGameResults: async (sessionId) => {
+    const res = await api.get(`/games/results/${sessionId}`)
+    return res.data
+  },
+
+  getGameHistory: async (page = 1, limit = 10) => {
+    const res = await api.get(`/games/history?page=${page}&limit=${limit}`)
+    return res.data
+  },
+}
+
+// ---------------- LEADERBOARD API ----------------
+export const leaderboardAPI = {
+  getGlobalLeaderboard: async (page = 1, limit = 50) => {
+    const res = await api.get(`/leaderboard/global?page=${page}&limit=${limit}`)
+    return res.data
+  },
+
+  getWeeklyLeaderboard: async (limit = 50) => {
+    const res = await api.get(`/leaderboard/weekly?limit=${limit}`)
+    return res.data
+  },
+
+  getQuizLeaderboard: async (quizId, limit = 50) => {
+    const res = await api.get(`/leaderboard/quiz/${quizId}?limit=${limit}`)
+    return res.data
+  },
+
+  getGameLeaderboard: async (gameCode) => {
+    const res = await api.get(`/leaderboard/game/${gameCode}`)
+    return res.data
+  },
+
+  getMyRank: async () => {
+    const res = await api.get('/leaderboard/my-rank')
+    return res.data
+  },
+}
+
 export default api

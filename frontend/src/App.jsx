@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { Toaster } from 'react-hot-toast'
 import { ThemeProvider } from './contexts/ThemeContext'
 import { AuthProvider } from './contexts/AuthContext'
+import { SocketProvider } from './contexts/SocketContext'
 import ProtectedRoute from './components/ProtectedRoute'
 import Layout from './components/Layout'
 import Home from './pages/Home'
@@ -13,27 +14,35 @@ import CreateQuiz from './pages/CreateQuiz'
 import QuizResults from './pages/QuizResults'
 import Profile from './pages/Profile'
 import MyQuizzes from './pages/MyQuizzes'
+import HostGame from './pages/HostGame'
+import PlayGame from './pages/PlayGame'
+import Leaderboard from './pages/Leaderboard'
 
 function App() {
   return (
     <ThemeProvider>
       <AuthProvider>
-        <Router>
-          <div className="min-h-screen bg-background text-foreground">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="/register" element={<Register />} />
-              <Route path="/dashboard" element={<ProtectedRoute><Layout><Dashboard /></Layout></ProtectedRoute>} />
-              <Route path="/create-quiz" element={<ProtectedRoute><Layout><CreateQuiz /></Layout></ProtectedRoute>} />
-              <Route path="/quiz/:id" element={<ProtectedRoute><Layout><TakeQuiz /></Layout></ProtectedRoute>} />
-              <Route path="/quiz/:id/results" element={<ProtectedRoute><Layout><QuizResults /></Layout></ProtectedRoute>} />
-              <Route path="/profile" element={<ProtectedRoute><Layout><Profile /></Layout></ProtectedRoute>} />
-              <Route path="/my-quizzes" element={<ProtectedRoute><Layout><MyQuizzes /></Layout></ProtectedRoute>} />
-            </Routes>
-            <Toaster position="top-right" />
-          </div>
-        </Router>
+        <SocketProvider>
+          <Router>
+            <div className="min-h-screen bg-background text-foreground">
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/login" element={<Login />} />
+                <Route path="/register" element={<Register />} />
+                <Route path="/play" element={<PlayGame />} />
+                <Route path="/dashboard" element={<ProtectedRoute><Layout><Dashboard /></Layout></ProtectedRoute>} />
+                <Route path="/create-quiz" element={<ProtectedRoute><Layout><CreateQuiz /></Layout></ProtectedRoute>} />
+                <Route path="/quiz/:id" element={<ProtectedRoute><Layout><TakeQuiz /></Layout></ProtectedRoute>} />
+                <Route path="/quiz/:id/results" element={<ProtectedRoute><Layout><QuizResults /></Layout></ProtectedRoute>} />
+                <Route path="/profile" element={<ProtectedRoute><Layout><Profile /></Layout></ProtectedRoute>} />
+                <Route path="/my-quizzes" element={<ProtectedRoute><Layout><MyQuizzes /></Layout></ProtectedRoute>} />
+                <Route path="/leaderboard" element={<ProtectedRoute><Layout><Leaderboard /></Layout></ProtectedRoute>} />
+                <Route path="/host/:quizId" element={<ProtectedRoute><HostGame /></ProtectedRoute>} />
+              </Routes>
+              <Toaster position="top-right" />
+            </div>
+          </Router>
+        </SocketProvider>
       </AuthProvider>
     </ThemeProvider>
   )

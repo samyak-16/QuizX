@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import { BookOpen, PlusCircle, Clock, Users, Eye, Play } from 'lucide-react'
+import { Link, useNavigate } from 'react-router-dom'
+import { BookOpen, PlusCircle, Clock, Users, Eye, Play, Radio } from 'lucide-react'
 import { useAuth } from '../contexts/AuthContext'
 import { quizAPI } from '../services/api'
 
 const MyQuizzes = () => {
   const { user } = useAuth()
+  const navigate = useNavigate()
   const [quizzes, setQuizzes] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
@@ -159,6 +160,15 @@ const MyQuizzes = () => {
                 </div>
 
                 <div className="flex space-x-2">
+                  {quiz.status === 'completed' && (
+                    <button
+                      onClick={() => navigate(`/host/${quiz._id}`)}
+                      className="p-2 text-green-600 hover:bg-green-100 rounded-lg transition-colors"
+                      title="Host Live Game"
+                    >
+                      <Radio className="w-4 h-4" />
+                    </button>
+                  )}
                   <button className="p-2 text-muted-foreground hover:text-foreground hover:bg-muted rounded-lg transition-colors">
                     <Eye className="w-4 h-4" />
                   </button>
